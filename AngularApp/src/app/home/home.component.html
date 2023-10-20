@@ -6,6 +6,7 @@
         </form>
     </section>
     <section class="results">
-        <app-housing-location></app-housing-location>
+        <app-housing-location *ngFor="let item of housingLocationList" [housingInput]="item">
+        </app-housing-location>
     </section>
 </div>
