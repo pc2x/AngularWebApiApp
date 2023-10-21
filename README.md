@@ -1,6 +1,8 @@
 # AngularWebApiApp
 Client: Angular app, Server: WebApi Net Core 6 with OAuth2, Identity, JWT, ADO, EF, Migrations, Antiforgery, DB SQL Server , Dockerized
 
+AngularApp: puerto 4100
+
 # Technologies
 ASP NET CORE v6.0
 Node.js v18.18.2

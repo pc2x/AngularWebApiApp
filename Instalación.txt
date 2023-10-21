@@ -1,0 +1,2 @@
+npm install -g npm@10.2.1
+wsl --update
