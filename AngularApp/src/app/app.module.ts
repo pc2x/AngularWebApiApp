@@ -4,6 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
+import { provideRouter } from '@angular/router';
+import routeConfig from './routes';
+
+import { RouterModule } from '@angular/router';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -11,8 +16,9 @@ import { HomeComponent } from './home/home.component';
   imports: [
     BrowserModule,
     HomeComponent,
+    RouterModule
   ],
-  providers: [],
+  providers: [ provideRouter(routeConfig)],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
