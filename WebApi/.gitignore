@@ -1,0 +1,8 @@
+/.vs
+/obj/Container
+/bin/Debug
+/obj
+/obj/Debug
+/Docker.txt
+/docker_db
+/logs
