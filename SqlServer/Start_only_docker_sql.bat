@@ -2,6 +2,9 @@ echo inicia docker desktop
 start "" "C:\Program Files\Docker\Docker\Docker Desktop.exe"
 timeout /t 5
 
+cd..
+cd WebApiNetCore
+
 docker-compose down --remove-orphans
 
 echo remueve el container sqlserver22
@@ -15,7 +18,7 @@ echo crea la red webapinetwork
 docker network create webapinetwork
 
 echo crea la imagen e inicia el container sqlserver22
-docker run --user root -v %cd%/docker_db/sqlserver22:/var/opt/mssql/data ^
+docker run --user root -v %cd%/../SqlServer/docker_db/sqlserver22:/var/opt/mssql/data ^
 --name sqlserver22 ^
 --network-alias sqlserver22 ^
 --network webapinetwork ^
