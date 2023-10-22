@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApiNetCore2023.Logger;
 using WebApiNetCore2023;
 using WebApiNetCore2023.Models.Identity;
+using Microsoft.AspNetCore.Mvc.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,8 @@ if (string.IsNullOrWhiteSpace(connectionString))
     //Si no está la variable de entorno utiliza la cadena de conexión del appSettings
     connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 }
+//Add las dependencias de los servicios del dominio de la aplicación
+DependencyInjection.AddDomainServices(builder.Services, connectionString);
 
 //Add servicio de DbContext para usarlo con EF
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -67,11 +70,29 @@ logger.LogWarning("Directorio de logs:" + ENV_VARS.LogDirectory);
 app.UseSwagger();
 app.UseSwaggerUI();
 
+//configuración de CORS
+app.UseCors(builder =>
+{
+    builder.WithOrigins("http://localhost:4100", "http://localhost:4200")
+           .AllowAnyHeader()
+           .AllowAnyMethod();
+});
+
 // Validación del token Antiforgery
 app.Use(async (context, next) =>
 {
-    if (context.GetEndpoint() != null && context.Request.Path != "/oauth/token")
+    var endPoint = context.GetEndpoint();
+    if (endPoint != null && context.Request.Path != "/oauth/token")
     {
+        // Verifica si la acción tiene el atributo IgnoreAntiforgeryTokenAttribute para ignorarlo
+        var actionDescriptor = endPoint.Metadata.GetMetadata<ControllerActionDescriptor>();
+        if (actionDescriptor != null && actionDescriptor.MethodInfo.IsDefined(typeof(Microsoft.AspNetCore.Mvc.IgnoreAntiforgeryTokenAttribute), inherit: true))
+        {
+            // No validamos el token Antiforgery
+            await next(context);
+            return;
+        }
+
         // Validar el token Antiforgery en las solicitudes POST o PUT
         var antiforgery = context.RequestServices.GetRequiredService<IAntiforgery>();
         try

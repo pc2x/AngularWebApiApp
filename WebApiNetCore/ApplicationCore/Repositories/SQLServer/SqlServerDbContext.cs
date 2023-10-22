@@ -77,7 +77,7 @@ namespace RestaurantApi.Data.SQLServer
             }
         }
 
-        public async Task<string> GetScalarStringAsync(string query, params object[] parametros)
+        public async Task<string?> GetScalarStringAsync(string query, params object[] parametros)
         {
             SqlCommand? cmd = null;
             try
@@ -106,8 +106,7 @@ namespace RestaurantApi.Data.SQLServer
 
                 await cmd.Connection.OpenAsync();
                 var resultObj = await cmd.ExecuteScalarAsync();
-
-                return resultObj.ToString();
+                return resultObj != null ? resultObj.ToString() : null;
             }
             catch
             {

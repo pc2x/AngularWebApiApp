@@ -9,6 +9,7 @@ import { MessagesComponent } from './Components/messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HeroSearchComponent } from './Components/hero-search/hero-search.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    HeroSearchComponent
   ],
   imports: [
     BrowserModule,

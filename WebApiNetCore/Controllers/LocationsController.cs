@@ -12,7 +12,6 @@ namespace WebApiNetCore2023.Controllers
     {
         // GET: api/<LocationsController>
         [HttpGet]
-        
         public IEnumerable<string> Get()
         {
             var username = User.FindFirst("username")?.Value??"";

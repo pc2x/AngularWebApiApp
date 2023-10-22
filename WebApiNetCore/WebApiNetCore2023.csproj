@@ -13,12 +13,16 @@
   <ItemGroup>
     <Compile Remove="docker_db\**" />
     <Compile Remove="Installation dependencys guide\**" />
+    <Compile Remove="logs\**" />
     <Content Remove="docker_db\**" />
     <Content Remove="Installation dependencys guide\**" />
+    <Content Remove="logs\**" />
     <EmbeddedResource Remove="docker_db\**" />
     <EmbeddedResource Remove="Installation dependencys guide\**" />
+    <EmbeddedResource Remove="logs\**" />
     <None Remove="docker_db\**" />
     <None Remove="Installation dependencys guide\**" />
+    <None Remove="logs\**" />
   </ItemGroup>
 
   <ItemGroup>
