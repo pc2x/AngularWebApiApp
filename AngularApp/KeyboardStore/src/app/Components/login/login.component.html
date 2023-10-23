@@ -1,0 +1,29 @@
+<div class="device-size bg-login center">
+    <form [formGroup]="formulario" class="login-form" (ngSubmit) = "onLogin()">
+        <h1 class="flex-center">
+            <img src="/assets/images/logo_login.png">
+            Acceso
+        </h1>
+        <div style="margin-top:30px;">
+            <div class="flex-spacebetween">
+                <span class="fa far fa-user"></span>
+                <input id="usuario" type="text" placeholder="Usuario" formControlName="username">
+            </div>
+            
+        </div>
+
+        <div style="margin-top:20px;">
+            <div class="flex-spacebetween">
+                <span class="fa fas fa-key"></span>
+                <input id="pass" type="password" placeholder="Contraseña" formControlName="password">
+            </div>
+        </div>
+
+        <div style="margin-top:20px;" class="text-center">
+            <button type="submit" class="btn-purple">
+                Iniciar sesión
+            </button>
+        </div>
+
+    </form>
+</div>

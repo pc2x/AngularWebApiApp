@@ -1,0 +1,44 @@
+.bg-login {
+    background: #616fd3;
+    background: -webkit-linear-gradient(0deg, #616fd3 0%, #895959 100%);
+    background: linear-gradient(0deg, #616fd3 0%, #895959 100%);
+}
+
+.center {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form {
+    width:100%;
+    max-width: 440px;
+    background-color:white;
+    padding:20px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.login-form input {
+    width:100%;
+}
+
+.login-form label {
+    display: block;
+}
+
+h1 {
+    font-weight: normal;
+    color:#353535;
+}
+
+.fa {
+    /*color:#dd6822;*/
+    color:#b200b8;
+}
+
+img {
+    width:50px; 
+    height:auto; 
+    margin-right: 10px;
+}
