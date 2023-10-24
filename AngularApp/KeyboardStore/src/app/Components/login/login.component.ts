@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { LoginService } from '../../login.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { AuthService } from '../../Services/auth.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginModel } from '../../Models/login.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,23 +10,39 @@ import { LoginModel } from '../../Models/login.model';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-    loginService = inject(LoginService);
-    formulario:FormGroup;
+  loginService = inject(AuthService);
+  router = inject(Router);
 
-    constructor() {
-      this.formulario = new FormGroup(
-        {
-          username: new FormControl(),
-          password: new FormControl()
-        }
-      );
-    }
+  formulario: FormGroup;
 
-    async onLogin(){
+  username = new FormControl("", Validators.required);
+  password = new FormControl("", Validators.required);
+  loginError: boolean;
+  errorMsg:string;
+
+  constructor() {
+    this.loginError = false;
+    this.errorMsg = "";
+    this.formulario = new FormGroup(
+      {
+        username: this.username,
+        password: this.password
+      }
+    );
+    this.loginService.signOut();
+  }
+
+  async onLogin() {
+
+    if (this.formulario.valid) {
       const data = this.formulario.value as LoginModel;
-      data.grant_type = "password";
-      data.client_id = "pc2x";
-      let r = await this.loginService.DoLogin(data);
-      console.log(r);
+      var r = await this.loginService.requestToken(data);
+      if (r && r.token) {
+        this.router.navigate([""]);
+      }else{
+        this.loginError = true;
+        this.errorMsg = r.error;
+      }
     }
+  }
 }

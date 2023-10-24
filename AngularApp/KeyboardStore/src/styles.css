@@ -60,10 +60,15 @@ button {
     outline-width: 2px;
 }
 
-button:active {
+button:active:enabled {
     border-width: 0;
     outline: none !important;
     font-size:0.8em;
+}
+
+button[disabled] {
+    opacity: 0.5;
+    cursor:default;
 }
 
 /*buttons*/
@@ -71,4 +76,9 @@ button:active {
 .btn-purple {
     color:white;
     background-color: #b200b8;
+}
+
+.form-error {
+    color:red;
+    font-size:0.9em;
 }
