@@ -8,6 +8,7 @@ export const authGuard = () => {
     const authService = inject(AuthService);
 
     if(authService.isAuthenticated()){
+        console.log("usuario autenticado");
         return true;
     }else{
         router.navigate(["login"])

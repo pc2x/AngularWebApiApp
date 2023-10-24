@@ -18,7 +18,7 @@ export class LoginComponent {
   username = new FormControl("", Validators.required);
   password = new FormControl("", Validators.required);
   loginError: boolean;
-  errorMsg:string;
+  errorMsg: string;
 
   constructor() {
     this.loginError = false;
@@ -38,8 +38,10 @@ export class LoginComponent {
       const data = this.formulario.value as LoginModel;
       var r = await this.loginService.requestToken(data);
       if (r && r.token) {
+        //setea el token de autenticación si es la url del token
+        this.loginService.signIn(r.token);
         this.router.navigate([""]);
-      }else{
+      } else {
         this.loginError = true;
         this.errorMsg = r.error;
       }

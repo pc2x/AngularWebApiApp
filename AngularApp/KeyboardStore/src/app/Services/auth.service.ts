@@ -67,6 +67,6 @@ export class AuthService {
 
   isAuthenticated():boolean {
     const token = this.getStoredAuthToken();
-    return token != null? true : false;
+    return token? true: false;
   }
 }

@@ -17,18 +17,18 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    const authToken = this.authService.isAuthenticated();
+    const authToken = this.authService.getStoredAuthToken();
     const afToken = this.authService.getAntiforgeryToken();
     let clonetRequest = request;
 
     //before send request
-    if(authToken){
+    if (authToken) {
       clonetRequest = request.clone({
         setHeaders: {
           Authorization: "Bearer " + authToken,
-          RequestVerificationToken : afToken
+          RequestVerificationToken: afToken
         }
-    })
+      })
     }
 
     return next.handle(clonetRequest).pipe(
@@ -40,32 +40,30 @@ export class AuthInterceptor implements HttpInterceptor {
           const status = response.status;
 
           //si es una respuesta exitosa
-          if(status === 200){
+          if (status === 200) {
 
             //obtiene el antiforgery token de la cabecera del response
             const aftoken = response.headers.get('RequestVerificationToken');
 
             //lo seteaa
             this.authService.setAntiforgeryToken(aftoken);
-
-            //setea el token de autenticación si es la url del token
-            if(response.body && this.authService.geTokenUrl() && response.body.token){
-              this.authService.signIn(response.body.token);
-            }
+            
           }
         }
       }),
       catchError((error: HttpErrorResponse) => {
-        
+
         console.log(error);
 
         if (error.status === 401) {
           // Manejar errores de autorización (código 401)
           // Puedes ejecutar tu función personalizada aquí para manejar la autorización.
-          return of(new HttpResponse({ status: 401, body: {
-            success : false,
-            error: error.error
-          } }));
+          return of(new HttpResponse({
+            status: 401, body: {
+              success: false,
+              error: error.error
+            }
+          }));
 
         } else if (error.status === 500) {
           // Manejar otros errores del servidor (código 500)
