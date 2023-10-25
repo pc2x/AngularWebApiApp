@@ -1,0 +1,29 @@
+.bg-body {
+    background: #d3d3d3;
+    position:fixed;
+}
+
+.item {
+    width:270px;
+    height:290px;
+    border: 1px solid #d8d8d8;
+    background-color: white;
+    margin: 20px;
+    box-shadow: 0 0 10px gray;
+}
+
+.item-image {
+    height:170px; 
+    width: 100%; 
+    border-bottom: 1px solid #d8d8d8;
+    overflow: hidden;
+}
+
+.item-description {
+    padding:15px;
+}
+
+.btn-add-cart {
+    margin-top:5px; 
+    color:#2a2aff;
+}
