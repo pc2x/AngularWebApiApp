@@ -12,7 +12,7 @@ export class AuthService {
 
   private http = inject(HttpClient);
 
-  private url = 'http://localhost:5000/oauth/token';
+  private url = 'https://localhost:32768/oauth/token';
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
   };

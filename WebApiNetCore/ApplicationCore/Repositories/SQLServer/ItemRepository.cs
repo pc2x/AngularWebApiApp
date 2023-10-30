@@ -3,7 +3,7 @@ using WebApiNetCore2023.ApplicationCore.Core.RepositoriesContracts;
 
 namespace RestaurantApi.Data.SQLServer
 {
-    public class ItemRepository : ItemRepository
+    public class ItemRepository : IItemRepository
     {
         private readonly IDbContext _dbContext;
 
@@ -12,32 +12,32 @@ namespace RestaurantApi.Data.SQLServer
             _dbContext = dbContext;
         }
 
-        public Task<string> Add(LocationModel model)
+        public Task<int> Add(ItemModel model)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> Update(LocationModel model)
+        public Task<IEnumerable<int>> BulkInsert(IEnumerable<ItemModel> list)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> Delete(LocationModel model)
+        public Task<bool> Delete(ItemModel model)
         {
             throw new NotImplementedException();
         }
 
-        public Task<LocationModel> GetById(string Id)
+        public Task<IEnumerable<ItemModel>> GetAll()
+        {
+            return _dbContext.GetListAsync<ItemModel>("select * from items");
+        }
+
+        public Task<ItemModel> GetById(int Id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<LocationModel>> GetAll()
-        {
-            return _dbContext.GetListAsync<LocationModel>("select * from locations");
-        }
-
-        public Task<IEnumerable<string>> BulkInsert(IEnumerable<LocationModel> list)
+        public Task<bool> Update(ItemModel model)
         {
             throw new NotImplementedException();
         }

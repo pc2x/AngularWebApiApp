@@ -22,14 +22,14 @@ export class AuthInterceptor implements HttpInterceptor {
     let clonetRequest = request;
 
     //before send request
-    if (authToken) {
+    //if (authToken) {
       clonetRequest = request.clone({
         setHeaders: {
           Authorization: "Bearer " + authToken,
-          RequestVerificationToken: afToken
+          RequestVerificationToken: afToken,
         }
       })
-    }
+    //}
 
     return next.handle(clonetRequest).pipe(
 
@@ -44,7 +44,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
             //obtiene el antiforgery token de la cabecera del response
             const aftoken = response.headers.get('RequestVerificationToken');
-
+            console.log("setear forgery token " + aftoken);
+            console.log("headers", JSON.stringify(response.headers));
             //lo seteaa
             this.authService.setAntiforgeryToken(aftoken);
             

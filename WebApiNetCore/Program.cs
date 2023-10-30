@@ -75,7 +75,9 @@ app.UseCors(builder =>
 {
     builder.WithOrigins("http://localhost:4100", "http://localhost:4200")
            .AllowAnyHeader()
-           .AllowAnyMethod();
+           .AllowAnyMethod()
+           .WithExposedHeaders("RequestVerificationToken");
+    //.AllowAnyOrigin();
 });
 
 // Validación del token Antiforgery

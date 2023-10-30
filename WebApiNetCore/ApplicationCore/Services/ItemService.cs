@@ -4,7 +4,7 @@ using WebApiNetCore2023.ApplicationCore.Core.ServicesContracts;
 
 namespace WebApiNetCore2023.ApplicationCore.Services
 {
-    public class ItemService : ItemService
+    public class ItemService : IItemService
     {
         private readonly IItemRepository _repository;
 
@@ -13,32 +13,32 @@ namespace WebApiNetCore2023.ApplicationCore.Services
             _repository = repository;
         }
 
-        public Task<string> Add(LocationModel model)
+        public Task<int> Add(ItemModel model)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> Update(LocationModel model)
+        public Task<IEnumerable<int>> BulkInsert(IEnumerable<ItemModel> list)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> Delete(LocationModel model)
+        public Task<bool> Delete(ItemModel model)
         {
             throw new NotImplementedException();
         }
 
-        public Task<LocationModel> GetById(string Id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<LocationModel>> GetAll()
+        public Task<IEnumerable<ItemModel>> GetAll()
         {
             return _repository.GetAll();
         }
 
-        public Task<IEnumerable<string>> BulkInsert(IEnumerable<LocationModel> list)
+        public Task<ItemModel> GetById(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> Update(ItemModel model)
         {
             throw new NotImplementedException();
         }
