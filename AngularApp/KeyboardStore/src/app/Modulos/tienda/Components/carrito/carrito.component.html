@@ -1,0 +1,59 @@
+<div class="carrito-container">
+    <div class="text-center">
+        Carrito de compras
+        <span class="fa fa-shopping-cart"></span>
+    </div>
+
+    <table>
+        <tbody>
+            <tr class="no-border">
+                <td>Cantidad de articulos:</td>
+                <td colspan="2">
+                    <div class="bold text-right">{{carSig().length}}</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="overflow-y: auto; height: 85%;">
+        <table>
+            <tbody>
+                <tr *ngFor="let item of carSig()">
+                    <td>
+                        <div>{{item.name}}</div>
+                    </td>
+                    <td>
+                        <div>{{item.price | currency}}</div>
+                    </td>
+                    <td>
+                        <button type="button" (click)="onRemoveCarItem(item)">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="totales" style="margin-bottom: 15px;">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Total carrito:</td>
+                    <td>
+                        <div class="bold text-right">{{totalSig() | currency}}</div>
+                    </td>
+                </tr>
+                <tr class="no-border">
+                    <td colspan="2" class="text-center">
+                        <button [disabled]="totalSig() <= 0" type="button" class="btn-blue" style="margin-top: 15px;">
+                            CheckOut
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+
+</div>

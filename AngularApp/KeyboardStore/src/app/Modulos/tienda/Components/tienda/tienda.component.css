@@ -1,0 +1,49 @@
+.main {
+    width: 100vw;
+    height: 100vw;
+    position: fixed;
+}
+
+.navegacion {
+    position:absolute;
+    display: block;
+    top:0;
+    left:0;
+    background: #7068bd;
+    height: var(--nav-height);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    color:white;
+}
+
+.articulos {
+    width: var(--items-width);
+    height: calc(100% -  var(--nav-height));
+    position: absolute;
+    left: 0;
+    top: var(--nav-height);
+    min-height: 400px;
+}
+
+.carrito {
+    width: var(--car-width);
+    height: calc(100% -  var(--nav-height));
+    position: fixed;
+    right: 0;
+    top: var(--nav-height);
+    min-width: 300px;
+    min-height: 400px;
+}
+
+h2 {
+    font-weight: normal;
+}
+
+.account {
+    position: absolute;
+    right:20px;
+    color:white;
+    font-size: 16px;
+}
