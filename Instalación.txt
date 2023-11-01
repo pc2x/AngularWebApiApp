@@ -2,3 +2,9 @@ npm install -g npm@10.2.1
 wsl --update
 npm install -g @angular/cli
 npm install -g @angular/cli@16.2.7
+
+compilar angular con certificado
+ng serve --ssl --ssl-key key.pem --ssl-cert cert.pem
+
+generar certificado autofirmado
+openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem

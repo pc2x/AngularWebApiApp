@@ -1,6 +1,11 @@
 .bg-body {
     background: #d3d3d3;
-    position:fixed;
+    position:relative;
+    display: flex;
+    flex-wrap: wrap;
+    width:100%;
+    height: 100%;
+    overflow-y:auto;
 }
 
 .item {
@@ -17,6 +22,7 @@
     width: 100%; 
     border-bottom: 1px solid #d8d8d8;
     overflow: hidden;
+    padding:10px;
 }
 
 .item-description {

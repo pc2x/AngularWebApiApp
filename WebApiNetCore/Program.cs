@@ -57,7 +57,10 @@ builder.Services.AddAntiforgery(options =>
 {
     options.HeaderName = ENV_VARS.AntiforgeryTokenName;
     options.SuppressXFrameOptionsHeader = false;
-    options.Cookie.HttpOnly = true;
+    options.Cookie.HttpOnly = false;
+    options.Cookie.Name = ENV_VARS.AntiforgeryCookieName;
+    options.Cookie.SameSite = SameSiteMode.None;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 });
 
 var app = builder.Build();
@@ -73,18 +76,23 @@ app.UseSwaggerUI();
 //configuración de CORS
 app.UseCors(builder =>
 {
-    builder.WithOrigins("http://localhost:4100", "http://localhost:4200")
+    builder.WithOrigins("http://localhost:4100", "https://localhost:4200", "http://localhost:4200")
            .AllowAnyHeader()
            .AllowAnyMethod()
-           .WithExposedHeaders("RequestVerificationToken");
-    //.AllowAnyOrigin();
+           .WithExposedHeaders("RequestVerificationToken")
+           .AllowCredentials();
+    //Access-Control-Allow-Credentials
+    //.AllowAnyOrigin(); risk
 });
 
 // Validación del token Antiforgery
 app.Use(async (context, next) =>
 {
     var endPoint = context.GetEndpoint();
-    if (endPoint != null && context.Request.Path != "/oauth/token")
+    if (endPoint != null && context.Request.Path != "/oauth/token" &&
+            (context.Request.Method == HttpMethods.Post ||
+            context.Request.Method == HttpMethods.Put ||
+            context.Request.Method == HttpMethods.Delete))
     {
         // Verifica si la acción tiene el atributo IgnoreAntiforgeryTokenAttribute para ignorarlo
         var actionDescriptor = endPoint.Metadata.GetMetadata<ControllerActionDescriptor>();
@@ -135,7 +143,10 @@ app.Use(async (context, next) =>
 
     //add el token en la cabecera del response
     if (tokens != null && tokens.RequestToken != null)
+    {
         context.Response.Headers.Append(ENV_VARS.AntiforgeryTokenName, tokens.RequestToken);
+        //context.Response.Headers.SetCookie = ENV_VARS.AntiforgeryCookieName;
+    }
 
     await next(context);
 });

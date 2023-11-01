@@ -10,26 +10,28 @@ import {
 import { Observable, throwError, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { AuthService } from '../Services/auth.service';
+import { MensajeService } from '../Services/mensaje.service';
+import { Router } from "@angular/router";
+
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
   private authService = inject(AuthService);
+  private msjService = inject(MensajeService);
+  private router = inject(Router);
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
     const authToken = this.authService.getStoredAuthToken();
     const afToken = this.authService.getAntiforgeryToken();
-    let clonetRequest = request;
-
-    //before send request
-    //if (authToken) {
-      clonetRequest = request.clone({
+   
+    let  clonetRequest = request.clone({
         setHeaders: {
           Authorization: "Bearer " + authToken,
           RequestVerificationToken: afToken,
-        }
+        },
+        withCredentials : true
       })
-    //}
 
     return next.handle(clonetRequest).pipe(
 
@@ -44,33 +46,27 @@ export class AuthInterceptor implements HttpInterceptor {
 
             //obtiene el antiforgery token de la cabecera del response
             const aftoken = response.headers.get('RequestVerificationToken');
-            console.log("setear forgery token " + aftoken);
-            console.log("headers", JSON.stringify(response.headers));
-            //lo seteaa
+            //lo almacena
             this.authService.setAntiforgeryToken(aftoken);
             
           }
         }
       }),
       catchError((error: HttpErrorResponse) => {
-
-        console.log(error);
-
+      
         if (error.status === 401) {
           // Manejar errores de autorización (código 401)
           // Puedes ejecutar tu función personalizada aquí para manejar la autorización.
+          this.router.navigate(["login"])
           return of(new HttpResponse({
             status: 401, body: {
               success: false,
               error: error.error
             }
           }));
-
-        } else if (error.status === 500) {
-          // Manejar otros errores del servidor (código 500)
-          // Puedes ejecutar tu función personalizada aquí para manejar errores del servidor.
-          return throwError(() => error);
         }
+
+        this.msjService.showError(error.message);
         return throwError(() => error);
       })
     )

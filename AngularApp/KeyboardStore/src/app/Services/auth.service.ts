@@ -13,12 +13,14 @@ export class AuthService {
   private http = inject(HttpClient);
 
   private url = 'https://localhost:32768/oauth/token';
-  private httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
-  };
+  private options = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded',
+    }),
+    withCredentials: true, // Importante para permitir cookies en la solicitud
+  };  
 
   requestToken(data :LoginModel ): any {
-
     const body = new HttpParams()
     .set('username', data.username)
     .set('password', data.password)
@@ -27,7 +29,7 @@ export class AuthService {
     .set('client_secret', "pc2x");
 
     return firstValueFrom(
-      this.http.post<TokenModel>(this.url, body, this.httpOptions)
+      this.http.post<TokenModel>(this.url, body, this.options)
     );
   }
 
@@ -45,9 +47,9 @@ export class AuthService {
       localStorage.setItem("RequestVerificationToken", token);
   }
 
-  setAuthToken(token: string){
-    if(token)
-      localStorage.setItem("Autorization", token);
+  getUserName():string {
+    const jtwToken = localStorage.getItem("username");
+    return jtwToken ?? "";
   }
 
   getStoredAuthToken():string {
@@ -55,9 +57,11 @@ export class AuthService {
     return jtwToken ?? "";
   }
 
-  signIn(token: string){
-    if(token)
+  signIn(token: string, username: string){
+    if(token){
       localStorage.setItem("Autorization", token);
+      localStorage.setItem("username", username);
+    }
   }
 
   signOut(){

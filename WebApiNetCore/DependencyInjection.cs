@@ -16,6 +16,10 @@ namespace WebApiNetCore2023
             //heroes
             services.AddTransient<IHeroRepository, HeroRepository>();
             services.AddTransient<IHeroService, HeroService>();
+
+            //items
+            services.AddTransient<IItemRepository, ItemRepository>();
+            services.AddTransient < IItemService, ItemService>();
         }
     }
 }

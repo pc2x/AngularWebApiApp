@@ -5,18 +5,23 @@ import { Injectable, signal, WritableSignal } from '@angular/core';
 })
 export class LoaderService {
 
-   private loaderFlag = signal<boolean>(false);
+  private loaderFlag = signal<boolean>(false);
+  private call: number = 0;
 
-  showLoader(){
+  showLoader() {
+    this.call++;
     this.loaderFlag.set(true);
   }
 
-  hideLoader(){
-    this.loaderFlag.set(false);
+  hideLoader() {
+    this.call--;
+    if (this.call <= 0){
+      this.call = 0;
+      this.loaderFlag.set(false);
+    }
   }
 
-  getSignal(): WritableSignal<boolean>{
+  getSignal(): WritableSignal<boolean> {
     return this.loaderFlag;
   }
-
 }

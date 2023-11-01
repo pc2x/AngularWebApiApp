@@ -11,6 +11,7 @@
         public static readonly string AdminEmail = Environment.GetEnvironmentVariable("AdminEmail") ?? "alberto_ville@hotmail.com";
         public static readonly string LogsPath = Environment.GetEnvironmentVariable("LogsPath") ?? "logs";
         public const string AntiforgeryTokenName = "RequestVerificationToken";
+        public const string AntiforgeryCookieName = "AspNetCore.Antiforgery";
         public static string LogDirectory = "";
     }
 }

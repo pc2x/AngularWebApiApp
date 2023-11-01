@@ -1,17 +1,17 @@
 <div class="bg-body device-size">
-    <div class="item">
+    <div class="item" *ngFor="let item of items">
         <div class="item-image">
-            <img style="width:100%; height:auto;" src="/assets/images/k2700.jpg" alt="k2700">
+            <img style="width:100%; height:auto;" src="/assets/images/{{item.image}}" alt="{{item.image}}" loading="lazy">
         </div>
         <div class="item-description">
             <div>
-                Kurzweil K2700
+                {{item.name}}
             </div>
             <div style="font-weight: bold; margin-top:5px;">
-                $59,000.00
+                {{item.price | currency}}
             </div>
             <div style="text-align: right;">
-                <button  class="btn-add-cart">
+                <button class="btn-add-cart" (click)="onAddToCar(item)">
                     <i class="fa fa-shopping-cart"></i>
                     <span>Agregar al carrito</span>
                 </button>

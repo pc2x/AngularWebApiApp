@@ -17,8 +17,8 @@ export class LoaderInterceptor implements HttpInterceptor {
   private loaderService = inject(LoaderService);
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    
-    //before start request    
+
+    //before start request
     this.loaderService.showLoader();
 
     return next.handle(request).pipe(

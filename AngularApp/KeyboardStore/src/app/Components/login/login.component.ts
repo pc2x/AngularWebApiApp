@@ -39,7 +39,7 @@ export class LoginComponent {
       var r = await this.loginService.requestToken(data);
       if (r && r.token) {
         //setea el token de autenticación si es la url del token
-        this.loginService.signIn(r.token);
+        this.loginService.signIn(r.token, data.username);
         this.router.navigate([""]);
       } else {
         this.loginError = true;

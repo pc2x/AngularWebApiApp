@@ -10,13 +10,15 @@ import { LoaderComponent } from './Components/loader/loader.component';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UrlSerializer } from '@angular/router';
-import {LowerCaseUrlSerializer} from './LowerCaseUrlSerializer'
+import {LowerCaseUrlSerializer} from './LowerCaseUrlSerializer';
+import { MensajeComponent } from './Components/mensaje/mensaje.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    LoaderComponent
+    LoaderComponent,
+    MensajeComponent
   ],
   imports: [
     BrowserModule,
