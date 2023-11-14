@@ -76,7 +76,7 @@ app.UseSwaggerUI();
 //configuración de CORS
 app.UseCors(builder =>
 {
-    builder.WithOrigins("http://localhost:4100", "https://localhost:4200", "http://localhost:4200")
+    builder.WithOrigins("http://localhost:4100", "https://localhost:4100", "https://localhost:4200", "http://localhost:4200")
            .AllowAnyHeader()
            .AllowAnyMethod()
            .WithExposedHeaders("RequestVerificationToken")

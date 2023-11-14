@@ -15,7 +15,8 @@ CREATE TABLE Items (
 INSERT INTO Items
 ([Name], Price, [Image])
 VALUES
- ('Alesis Piano', 14700, 'alesispiano.jpg')
+ ('Korg Kross', 22100, 'korgkross.jpg')
+,('Alesis Piano', 14700, 'alesispiano.jpg')
 ,('Casio PXS700', 12000, 'casiopxs700.jpg')
 ,('Fantom-08', 43000, 'fantom08.jpg')
 ,('Fantom 8', 92730, 'fantom8.jpg')
@@ -32,4 +33,5 @@ VALUES
 ,('Hammond SK1', 67000, 'sk1.jpg')
 ,('Yamaha SX700', 49800, 'yamahasx700.webp')
 ,('Yamaha YC88', 51000, 'yamahayc88.jpg');
+
 END

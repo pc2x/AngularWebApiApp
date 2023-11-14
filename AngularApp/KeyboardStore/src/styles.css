@@ -4,6 +4,9 @@
     --car-width: 25%;
 }
 
+table {
+    border-collapse: collapse;
+}
 
 * {
     margin:0;
@@ -102,4 +105,32 @@ button[disabled] {
 .form-error {
     color:red;
     font-size:0.9em;
+}
+
+/*custom web camponents*/
+credit-card-expiration,
+credit-card-input {
+    display: flex;
+    align-items: center;
+    width:100%;
+}
+
+credit-card-expiration > input,
+credit-card-input > input {
+    width:100%;
+    border:1px solid #d8d8d8;
+}
+
+credit-card-expiration > .fa,
+credit-card-input > .fa {
+    font-size: 22px;
+    background-color: #f4f4f4;
+    display: block;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:1px solid #d8d8d8;
+    border-right: none;
 }

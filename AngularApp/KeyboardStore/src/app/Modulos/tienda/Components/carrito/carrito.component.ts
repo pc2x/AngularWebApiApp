@@ -1,6 +1,7 @@
 import { Component, WritableSignal, inject } from '@angular/core';
 import { CarritoService } from '../../Services/carrito.service';
 import { ItemModel } from '../../Models/item.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrito',
@@ -10,8 +11,10 @@ import { ItemModel } from '../../Models/item.model';
 export class CarritoComponent {
 
   private carService = inject(CarritoService);
+  private router = inject(Router);
   protected carSig: WritableSignal<ItemModel[]>;
   protected totalSig: WritableSignal<number>;
+  
 
   constructor() {
     this.carSig = this.carService.getListSig();
@@ -20,6 +23,10 @@ export class CarritoComponent {
 
   onRemoveCarItem(item:ItemModel):void{
     this.carService.remove(item);
+  }
+
+  onGoToCheckOut() : void{
+    this.router.navigate(["checkout"]);
   }
 
 }

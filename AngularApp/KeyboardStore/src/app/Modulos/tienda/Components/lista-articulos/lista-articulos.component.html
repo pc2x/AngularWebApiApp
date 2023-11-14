@@ -1,5 +1,5 @@
-<div class="bg-body device-size">
-    <div class="item" *ngFor="let item of items">
+<div class="bg-body">
+    <div class="item" *ngFor="let item of items; trackBy: trackByFn">
         <div class="item-image">
             <img style="width:100%; height:auto;" src="/assets/images/{{item.image}}" alt="{{item.image}}" loading="lazy">
         </div>

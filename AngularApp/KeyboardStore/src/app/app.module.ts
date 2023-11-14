@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,14 +11,17 @@ import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UrlSerializer } from '@angular/router';
 import {LowerCaseUrlSerializer} from './LowerCaseUrlSerializer';
-import { MensajeComponent } from './Components/mensaje/mensaje.component'
+import { MensajeComponent } from './Components/mensaje/mensaje.component';
+import { LayoutComponent } from './Components/layout/layout.component';
+import { noWhitespaceValidator } from './custom.validators';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     LoaderComponent,
-    MensajeComponent
+    MensajeComponent,
+    LayoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,11 @@ import { MensajeComponent } from './Components/mensaje/mensaje.component'
     ReactiveFormsModule,
     HttpClientModule
   ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
   providers: [
+    { provide: 'noWhitespaceValidator', useValue: noWhitespaceValidator },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptor,

@@ -27,7 +27,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/WebComponents/credit-card-webcomponent.js"
+            ]
           },
           "configurations": {
             "production": {

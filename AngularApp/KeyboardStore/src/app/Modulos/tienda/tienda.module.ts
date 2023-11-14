@@ -4,7 +4,7 @@ import { TiendaRoutingModule } from './tienda-routing.module';
 import { ListaArticulosComponent } from './Components/lista-articulos/lista-articulos.component';
 import { TiendaComponent } from './Components/tienda/tienda.component';
 import { CarritoComponent } from './Components/carrito/carrito.component';
-
+import { NgOptimizedImage } from '@angular/common'
 
 
 @NgModule({
@@ -15,7 +15,8 @@ import { CarritoComponent } from './Components/carrito/carrito.component';
   ],
   imports: [
     CommonModule,
-    TiendaRoutingModule
+    TiendaRoutingModule,
+    NgOptimizedImage
   ]
 })
 export class TiendaModule { }

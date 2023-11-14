@@ -17,6 +17,7 @@ export class LoginComponent {
 
   username = new FormControl("", Validators.required);
   password = new FormControl("", Validators.required);
+  
   loginError: boolean;
   errorMsg: string;
 

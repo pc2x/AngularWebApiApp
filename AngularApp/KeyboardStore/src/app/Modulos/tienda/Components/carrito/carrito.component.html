@@ -15,7 +15,7 @@
         </tbody>
     </table>
 
-    <div style="overflow-y: auto; height: 85%;">
+    <div style="overflow-y: auto; height: 70%;">
         <table>
             <tbody>
                 <tr *ngFor="let item of carSig()">
@@ -46,7 +46,7 @@
                 </tr>
                 <tr class="no-border">
                     <td colspan="2" class="text-center">
-                        <button [disabled]="totalSig() <= 0" type="button" class="btn-blue" style="margin-top: 15px;">
+                        <button (click)="onGoToCheckOut()" [disabled]="totalSig() <= 0" type="button" class="btn-blue" style="margin-top: 15px;">
                             CheckOut
                         </button>
                     </td>
