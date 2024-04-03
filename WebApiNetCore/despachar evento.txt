@@ -1,0 +1,2 @@
+  this.dispatchEvent(new Event('input', { bubbles: true, cancelable: true }));
+  this.dispatchEvent(new CustomEvent('valueChanged', { detail: "hola" }));

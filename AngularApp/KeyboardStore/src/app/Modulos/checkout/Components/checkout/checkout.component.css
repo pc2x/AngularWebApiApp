@@ -1,0 +1,74 @@
+.subtitle {
+    background-color: #f3f3f3;
+    border:1px solid #d8d8d8;
+    padding:10px 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+h2 {
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+.container {
+    width:100%;
+    max-width: 600px;
+    margin: 0 auto;
+    height:auto;
+    background-color: white;
+    padding:20px 20px 100px 20px;
+}
+
+table {
+    margin-bottom: 20px;
+    width:100%;
+    border:1px solid #d8d8d8;
+    border-top:none;
+}
+
+
+table > tbody > tr > td {
+    padding:10px 15px;
+}
+
+table > tbody > tr > td:last-child {
+    text-align: right;
+}
+
+form > div {
+    margin: 5px 0;
+    padding: 5px;
+}
+
+form > div > label {
+    display: block;
+}
+
+form > div > div.form-control {
+    width:100%;
+    height:40px;
+    display: flex;
+    align-items: center;
+}
+
+form > div > div > span {
+    width:40px;
+    height:40px;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border:1px solid #d8d8d8;
+    border-right:none;
+}
+
+button {
+    width:100%;
+}
+
+input {
+    height:40px;
+    width:100%;
+    border:1px solid #d8d8d8;
+    text-transform: uppercase;
+}

@@ -7,6 +7,9 @@ RUN apk add icu-libs icu-data-full
 #Proporciona datos de zona horaria y configuraciones que permiten que el contenedor siga la zona horaria del sistema host o se configure manualmente
 RUN apk add tzdata
 
+# Instalar curl para realizar un healthcheck
+RUN apk --no-cache add curl
+
 #Establece una variable de entorno para controlar la configuración de internacionalización en aplicaciones .NET
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 

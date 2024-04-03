@@ -1,0 +1,13 @@
+<div class="main">
+    <nav class="navegacion">
+        <img src="/assets/images/logo_login.png" style="height: 50px;" loading="lazy"/>
+        <h2 style="margin-left:20px;">Keyboard Store</h2>
+        <a routerLink="/login" class="account">
+            {{username}}
+            <i class="fa fa-sign-out"></i>
+        </a>
+    </nav>
+    <div class="body">
+        <router-outlet></router-outlet>
+    </div>
+</div>

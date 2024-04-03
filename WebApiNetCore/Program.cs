@@ -59,8 +59,8 @@ builder.Services.AddAntiforgery(options =>
     options.SuppressXFrameOptionsHeader = false;
     options.Cookie.HttpOnly = false;
     options.Cookie.Name = ENV_VARS.AntiforgeryCookieName;
-    options.Cookie.SameSite = SameSiteMode.None;
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    //options.Cookie.SameSite = SameSiteMode.None;
+    //options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 });
 
 var app = builder.Build();
@@ -120,7 +120,7 @@ app.Use(async (context, next) =>
     await next(context);
 });
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 //Enable OAuth2 authentication
 //debe ir antes de UseAuthorization

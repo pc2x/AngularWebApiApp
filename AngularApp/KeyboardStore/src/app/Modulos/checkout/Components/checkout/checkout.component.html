@@ -1,0 +1,107 @@
+<div class="container">
+    <h2>Checkout</h2>
+    <div class="subtitle">
+        <span>Articulos</span>
+        <span>7</span>
+    </div>
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <img src="/assets/images/k2700.jpg" style="width:auto; height:50px;" />
+                </td>
+                <td>
+                    Kurzweil k2700
+                </td>
+                <td>
+                    Qty: 1
+                </td>
+                <td>
+                    $59,000.00
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="subtitle">
+        Total
+    </div>
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    Productos
+                </td>
+                <td>
+                    $100,459.11
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Envío
+                </td>
+                <td>
+                    $0.00
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>
+                        Total a pagar
+                    </strong>
+                    
+                </td>
+                <td>
+                    <strong>
+                        $100,459.11
+                    </strong>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="subtitle">Información de Pago</div>
+    <form [formGroup]="formulario">
+
+        <div>
+            <label>Nombre del tarjetahabiente</label>
+            <div class="form-control">
+                <span class="fa fa-user"></span>
+                <input type="text" formControlName="name" maxlength="50">
+            </div>
+            <div [validationfor]="name"></div>
+        </div>
+
+        <div>
+            <label>Numero de tarjeta</label>
+            <div class="form-control">
+                <credit-card-input placeholder="0000 0000 0000 0000" formControlName="card" ngDefaultControl></credit-card-input>
+            </div>
+            <div [validationfor]="card"></div>
+        </div>
+
+        <div>
+            <label>Fecha expiración</label>
+            <div class="form-control">
+                <credit-card-expiration placeholder="MM/YY" formControlName="exp" ngDefaultControl></credit-card-expiration>
+            </div>
+            <div [validationfor]="exp" [defaultMessages]="{ minlength : 'La fecha de expiración debe tener el formato MES/AÑO '}"></div>
+        </div>
+        <div>
+            <label>CVV</label>
+            <div class="form-control">
+                <span class="fa fa-key"></span>
+                <input name="cvv" type="password" formControlName="cvv" maxlength="4" placeholder="***" autocomplete="off">
+            </div>
+            <div [validationfor]="cvv"></div>
+        </div>
+
+        <button class="btn-blue" type="text">
+            Pagar y realizar pedido
+        </button>
+
+    </form>
+
+
+
+</div>
